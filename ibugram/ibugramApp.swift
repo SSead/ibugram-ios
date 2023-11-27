@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct ibugramApp: App {
+    // register app delegate for Firebase setup
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @AppStorage("signIn") var isSignedIn = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if (isSignedIn) {
+                TabBar()
+            } else {
+                LoginScreen()
+            }
         }
     }
 }
